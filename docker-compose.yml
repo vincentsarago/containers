@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  pg13:
+    build:
+      context: ./postgis/13-3.1
+      dockerfile: Dockerfile
+    environment:
+      - POSTGRES_USER=username
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgis
+    ports:
+      - "5439:5432"
+    command: postgres -N 500
+
+  pg14:
+    build:
+      context: ./postgis/14-3.1
+      dockerfile: Dockerfile
+    environment:
+      - POSTGRES_USER=username
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgis
+    ports:
+      - "5439:5432"
+    command: postgres -N 500
+
+  uvicorn-py38:
+    build:
+      context: ./uvicorn-gunicorn
+      dockerfile: python3.8.dockerfile
+
+  uvicorn-py39:
+    build:
+      context: ./uvicorn-gunicorn
+      dockerfile: python3.9.dockerfile
+
