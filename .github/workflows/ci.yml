@@ -34,6 +34,15 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: ./postgis/${{ matrix.postgres }}-3.1
+          file: ./postgis/${{ matrix.postgres }}-3.1/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          tags: |
+            ghcr.io/${{ github.actor }}/postgis:${{ matrix.postgres }}-3.1
+
+      - name: Build and push
         if: github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v2
         with:
@@ -68,7 +77,16 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push
+      - name: Build images
+        uses: docker/build-push-action@v2
+        with:
+          context: ./uvicorn-gunicorn
+          file: ./uvicorn-gunicorn/python${{ matrix.python }}.dockerfile
+          platforms: linux/amd64,linux/arm64
+          tags: |
+            ghcr.io/${{ github.actor }}/uvicorn-gunicorn:${{ matrix.python }}
+
+      - name: push
         if: github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v2
         with:

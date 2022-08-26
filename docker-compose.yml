@@ -35,3 +35,8 @@ services:
       context: ./uvicorn-gunicorn
       dockerfile: python3.9.dockerfile
 
+  uvicorn-py310:
+    build:
+      context: ./uvicorn-gunicorn
+      dockerfile: python3.10.dockerfile
+
