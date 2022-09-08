@@ -9,6 +9,7 @@ Build and publish images compatible with `linux/amd64` and `linux/arm64` archite
 - **uvicorn/gunicorn** (code from https://github.com/tiangolo/uvicorn-gunicorn-docker)
     - `ghcr.io/vincentsarago/uvicorn-gunicorn:3.8`
     - `ghcr.io/vincentsarago/uvicorn-gunicorn:3.9`
+    - `ghcr.io/vincentsarago/uvicorn-gunicorn:3.10`
 
 ### Motivation
 
