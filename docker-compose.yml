@@ -3,7 +3,7 @@ version: '3'
 services:
   pg13:
     build:
-      context: ./postgis/13-3.1
+      context: ./postgis/13-3.2
       dockerfile: Dockerfile
     environment:
       - POSTGRES_USER=username
@@ -15,7 +15,7 @@ services:
 
   pg14:
     build:
-      context: ./postgis/14-3.1
+      context: ./postgis/14-3.2
       dockerfile: Dockerfile
     environment:
       - POSTGRES_USER=username
@@ -39,4 +39,3 @@ services:
     build:
       context: ./uvicorn-gunicorn
       dockerfile: python3.10.dockerfile
-
