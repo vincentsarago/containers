@@ -33,23 +33,32 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push
+      - name: Build images
+        uses: docker/build-push-action@v2
+        with:
+          context: ./postgis/${{ matrix.postgres }}-3.2
+          file: ./postgis/${{ matrix.postgres }}-3.2/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          tags: |
+            ghcr.io/${{ github.actor }}/postgis:${{ matrix.postgres }}-3.2
+
+      - name: Push images
         if: github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v2
         with:
-          context: ./postgis/${{ matrix.postgres }}-3.1
-          file: ./postgis/${{ matrix.postgres }}-3.1/Dockerfile
+          context: ./postgis/${{ matrix.postgres }}-3.2
+          file: ./postgis/${{ matrix.postgres }}-3.2/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/${{ github.actor }}/postgis:${{ matrix.postgres }}-3.1
+            ghcr.io/${{ github.actor }}/postgis:${{ matrix.postgres }}-3.2
 
   uvicorn:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     strategy:
       matrix:
-        python: [3.8, 3.9]
+        python: ['3.8', '3.9', '3.10']
 
     steps:
       - name: Checkout
@@ -68,7 +77,16 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push
+      - name: Build images
+        uses: docker/build-push-action@v2
+        with:
+          context: ./uvicorn-gunicorn
+          file: ./uvicorn-gunicorn/python${{ matrix.python }}.dockerfile
+          platforms: linux/amd64,linux/arm64
+          tags: |
+            ghcr.io/${{ github.actor }}/uvicorn-gunicorn:${{ matrix.python }}
+
+      - name: Push images
         if: github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v2
         with:
