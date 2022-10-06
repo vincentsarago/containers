@@ -36,22 +36,26 @@ jobs:
       - name: Build images
         uses: docker/build-push-action@v2
         with:
-          context: ./postgis/${{ matrix.postgres }}-3.2
-          file: ./postgis/${{ matrix.postgres }}-3.2/Dockerfile
+          context: ./postgis
+          file: ./postgis/Dockerfile
           platforms: linux/amd64,linux/arm64
+          build-args: |
+            POSTGRES_VERSION=${{ matrix.postgres }}
           tags: |
-            ghcr.io/${{ github.actor }}/postgis:${{ matrix.postgres }}-3.2
+            ghcr.io/${{ github.actor }}/postgis:${{ matrix.postgres }}-3.3
 
       - name: Push images
         if: github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v2
         with:
-          context: ./postgis/${{ matrix.postgres }}-3.2
-          file: ./postgis/${{ matrix.postgres }}-3.2/Dockerfile
+          context: ./postgis
+          file: ./postgis/Dockerfile
           platforms: linux/amd64,linux/arm64
+          build-args: |
+            POSTGRES_VERSION=${{ matrix.postgres }}
           push: true
           tags: |
-            ghcr.io/${{ github.actor }}/postgis:${{ matrix.postgres }}-3.2
+            ghcr.io/${{ github.actor }}/postgis:${{ matrix.postgres }}-3.3
 
   uvicorn:
     runs-on: ubuntu-latest

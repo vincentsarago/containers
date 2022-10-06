@@ -1,4 +1,3 @@
-#!/bin/sh
 # Original code from https://github.com/postgis/docker-postgis
 #
 # Copyright (c) 2014, Docker PostGIS Authors (See AUTHORS)
@@ -24,27 +23,22 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
-set -e
+ARG POSTGRES_VERSION
 
-# Perform all actions as $POSTGRES_USER
-export PGUSER="$POSTGRES_USER"
+FROM postgres:${POSTGRES_VERSION}-bullseye
 
-POSTGIS_VERSION="${POSTGIS_VERSION%%+*}"
+ENV POSTGIS_MAJOR 3
+ENV POSTGIS_VERSION 3.3.1+dfsg-1.pgdg110+1
 
-# Load PostGIS into both template_database and $POSTGRES_DB
-for DB in template_postgis "$POSTGRES_DB" "${@}"; do
-    echo "Updating PostGIS extensions '$DB' to $POSTGIS_VERSION"
-    psql --dbname="$DB" -c "
-        -- Upgrade PostGIS (includes raster)
-        CREATE EXTENSION IF NOT EXISTS postgis VERSION '$POSTGIS_VERSION';
-        ALTER EXTENSION postgis  UPDATE TO '$POSTGIS_VERSION';
-        -- Upgrade Topology
-        CREATE EXTENSION IF NOT EXISTS postgis_topology VERSION '$POSTGIS_VERSION';
-        ALTER EXTENSION postgis_topology UPDATE TO '$POSTGIS_VERSION';
-        -- Install Tiger dependencies in case not already installed
-        CREATE EXTENSION IF NOT EXISTS fuzzystrmatch;
-        -- Upgrade US Tiger Geocoder
-        CREATE EXTENSION IF NOT EXISTS postgis_tiger_geocoder VERSION '$POSTGIS_VERSION';
-        ALTER EXTENSION postgis_tiger_geocoder UPDATE TO '$POSTGIS_VERSION';
-    "
-done
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && apt-cache showpkg postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR
+
+RUN apt-get install -y --no-install-recommends \
+        postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR=$POSTGIS_VERSION \
+        postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR-scripts \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /docker-entrypoint-initdb.d
+COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/10_postgis.sh
+COPY ./update-postgis.sh /usr/local/bin

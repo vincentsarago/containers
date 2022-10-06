@@ -3,10 +3,12 @@
 Build and publish images compatible with `linux/amd64` and `linux/arm64` architectures.
 
 - **postgis 3.2** (code from https://github.com/postgis/docker-postgis)
-    - `ghcr.io/vincentsarago/postgis:13-3.2`
-    - `ghcr.io/vincentsarago/postgis:14-3.2`
+    - `ghcr.io/vincentsarago/postgis:13-3.3`
+    - `ghcr.io/vincentsarago/postgis:14-3.3`
 
     - old images:
+        - `ghcr.io/vincentsarago/postgis:13-3.2`
+        - `ghcr.io/vincentsarago/postgis:14-3.2`
         - `ghcr.io/vincentsarago/postgis:13-3.1`
         - `ghcr.io/vincentsarago/postgis:14-3.1`
 
