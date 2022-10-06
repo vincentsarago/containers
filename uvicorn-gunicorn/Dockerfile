@@ -22,8 +22,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+ARG PYTHON_VERSION
 
-FROM python:3.8
+FROM bitnami/python:${PYTHON_VERSION}
+RUN apt update && apt upgrade -y \
+  && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
