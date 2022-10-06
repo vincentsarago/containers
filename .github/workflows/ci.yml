@@ -83,8 +83,8 @@ jobs:
           context: ./uvicorn-gunicorn
           file: ./uvicorn-gunicorn/Dockerfile
           platforms: linux/amd64,linux/arm64
-          build-args:
-            - PYTHON_VERSION: ${{ matrix.python }}
+          build-args: |
+            PYTHON_VERSION=${{ matrix.python }}
           tags: |
             ghcr.io/${{ github.actor }}/uvicorn-gunicorn:${{ matrix.python }}
 
@@ -95,8 +95,8 @@ jobs:
           context: ./uvicorn-gunicorn
           file: ./uvicorn-gunicorn/Dockerfile
           platforms: linux/amd64,linux/arm64
-          build-args:
-            - PYTHON_VERSION: ${{ matrix.python }}
+          build-args: |
+            PYTHON_VERSION=${{ matrix.python }}
           push: true
           tags: |
             ghcr.io/${{ github.actor }}/uvicorn-gunicorn:${{ matrix.python }}
