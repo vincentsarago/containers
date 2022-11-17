@@ -3,7 +3,9 @@ version: '3'
 services:
   pg13:
     build:
-      context: ./postgis/13-3.2
+      args:
+        - POSTGRES_VERSION=13
+      context: ./postgis
       dockerfile: Dockerfile
     environment:
       - POSTGRES_USER=username
@@ -15,7 +17,9 @@ services:
 
   pg14:
     build:
-      context: ./postgis/14-3.2
+      args:
+        - POSTGRES_VERSION=14
+      context: ./postgis
       dockerfile: Dockerfile
     environment:
       - POSTGRES_USER=username
@@ -25,17 +29,44 @@ services:
       - "5439:5432"
     command: postgres -N 500
 
-  uvicorn-py38:
+  gunicorn-py38:
     build:
+      args:
+        - PYTHON_VERSION=3.8
       context: ./uvicorn-gunicorn
-      dockerfile: python3.8.dockerfile
+      dockerfile: Dockerfile
 
-  uvicorn-py39:
+  gunicorn-py39:
     build:
+      args:
+        - PYTHON_VERSION=3.9
       context: ./uvicorn-gunicorn
-      dockerfile: python3.9.dockerfile
+      dockerfile: Dockerfile
 
-  uvicorn-py310:
+  gunicorn-py310:
     build:
+      args:
+        - PYTHON_VERSION=3.10
       context: ./uvicorn-gunicorn
-      dockerfile: python3.10.dockerfile
+      dockerfile: Dockerfile
+
+  hypercorn-py38:
+    build:
+      args:
+        - PYTHON_VERSION=3.8
+      context: ./hypercorn
+      dockerfile: Dockerfile
+
+  hypercorn-py39:
+    build:
+      args:
+        - PYTHON_VERSION=3.9
+      context: ./hypercorn
+      dockerfile: Dockerfile
+
+  hypercorn-py310:
+    build:
+      args:
+        - PYTHON_VERSION=3.10
+      context: ./hypercorn
+      dockerfile: Dockerfile
