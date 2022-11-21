@@ -20,6 +20,7 @@ Build and publish images compatible with `linux/amd64` and `linux/arm64` archite
         - `ghcr.io/vincentsarago/uvicorn-gunicorn:3.8`
         - `ghcr.io/vincentsarago/uvicorn-gunicorn:3.9`
         - `ghcr.io/vincentsarago/uvicorn-gunicorn:3.10`
+        - `ghcr.io/vincentsarago/uvicorn-gunicorn:3.11`
 
 - **hypercorn**
     - Base: `bitnami/python:${PYTHON_VERSION}` (~600MB)
@@ -27,6 +28,7 @@ Build and publish images compatible with `linux/amd64` and `linux/arm64` archite
         - `ghcr.io/vincentsarago/hypercorn:3.8`
         - `ghcr.io/vincentsarago/hypercorn:3.9`
         - `ghcr.io/vincentsarago/hypercorn:3.10`
+        - `ghcr.io/vincentsarago/hypercorn:3.11`
 
 ### Motivation
 

@@ -50,6 +50,13 @@ services:
       context: ./uvicorn-gunicorn
       dockerfile: Dockerfile
 
+  gunicorn-py311:
+    build:
+      args:
+        - PYTHON_VERSION=3.11
+      context: ./uvicorn-gunicorn
+      dockerfile: Dockerfile
+
   hypercorn-py38:
     build:
       args:
@@ -68,5 +75,12 @@ services:
     build:
       args:
         - PYTHON_VERSION=3.10
+      context: ./hypercorn
+      dockerfile: Dockerfile
+
+  hypercorn-py311:
+    build:
+      args:
+        - PYTHON_VERSION=3.11
       context: ./hypercorn
       dockerfile: Dockerfile
