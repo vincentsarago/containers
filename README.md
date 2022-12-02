@@ -7,6 +7,7 @@ Build and publish images compatible with `linux/amd64` and `linux/arm64` archite
     - Images:
         - `ghcr.io/vincentsarago/postgis:13-3.3`
         - `ghcr.io/vincentsarago/postgis:14-3.3`
+        - `ghcr.io/vincentsarago/postgis:15-3.3`
 
     - old images:
         - `ghcr.io/vincentsarago/postgis:13-3.2`

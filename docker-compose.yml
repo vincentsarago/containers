@@ -29,6 +29,20 @@ services:
       - "5439:5432"
     command: postgres -N 500
 
+  pg15:
+    build:
+      args:
+        - POSTGRES_VERSION=15
+      context: ./postgis
+      dockerfile: Dockerfile
+    environment:
+      - POSTGRES_USER=username
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgis
+    ports:
+      - "5439:5432"
+    command: postgres -N 500
+
   gunicorn-py38:
     build:
       args:
