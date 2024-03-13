@@ -2,14 +2,17 @@
 
 Build and publish images compatible with `linux/amd64` and `linux/arm64` architectures.
 
-- **postgis 3.3** (code from https://github.com/postgis/docker-postgis)
+- **postgis 3.4** (code from https://github.com/postgis/docker-postgis)
     - Base: `postgres:${POSTGRES_VERSION}-bullseye`
     - Images:
+        - `ghcr.io/vincentsarago/postgis:13-3.4`
+        - `ghcr.io/vincentsarago/postgis:14-3.4`
+        - `ghcr.io/vincentsarago/postgis:15-3.4`
+
+    - old images:
         - `ghcr.io/vincentsarago/postgis:13-3.3`
         - `ghcr.io/vincentsarago/postgis:14-3.3`
         - `ghcr.io/vincentsarago/postgis:15-3.3`
-
-    - old images:
         - `ghcr.io/vincentsarago/postgis:13-3.2`
         - `ghcr.io/vincentsarago/postgis:14-3.2`
         - `ghcr.io/vincentsarago/postgis:13-3.1`
