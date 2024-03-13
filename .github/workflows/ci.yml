@@ -42,7 +42,7 @@ jobs:
           build-args: |
             POSTGRES_VERSION=${{ matrix.postgres }}
           tags: |
-            ghcr.io/${{ github.actor }}/postgis:${{ matrix.postgres }}-3.3
+            ghcr.io/${{ github.actor }}/postgis:${{ matrix.postgres }}-3.4
 
       - name: Push images
         if: github.ref == 'refs/heads/main'
@@ -55,7 +55,7 @@ jobs:
             POSTGRES_VERSION=${{ matrix.postgres }}
           push: true
           tags: |
-            ghcr.io/${{ github.actor }}/postgis:${{ matrix.postgres }}-3.3
+            ghcr.io/${{ github.actor }}/postgis:${{ matrix.postgres }}-3.4
 
   gunicorn:
     runs-on: ubuntu-latest
