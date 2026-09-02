@@ -50,8 +50,8 @@ jobs:
         uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # v7.3.0
         with:
           platforms: linux/amd64,linux/arm64
-          context: .
-          file: postgis/Dockerfile
+          context: ./postgis
+          file: ./postgis/Dockerfile
           build-args: |
             POSTGRES_VERSION=${{ matrix.postgres }}
           push: ${{ github.ref == 'refs/heads/main' }}
@@ -98,8 +98,8 @@ jobs:
         uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # v7.3.0
         with:
           platforms: linux/amd64,linux/arm64
-          context: .
-          file: postgis/Dockerfile.3.6
+          context: ./postgis
+          file: ./postgis/Dockerfile.3.6
           build-args: |
             POSTGRES_VERSION=${{ matrix.postgres }}
           push: ${{ github.ref == 'refs/heads/main' }}
