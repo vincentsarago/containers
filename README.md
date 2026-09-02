@@ -2,14 +2,17 @@
 
 Build and publish images compatible with `linux/amd64` and `linux/arm64` architectures.
 
-- **postgis 3.4** (code from https://github.com/postgis/docker-postgis)
+- **postgis 3.5** (code from https://github.com/postgis/docker-postgis)
     - Base: `postgres:${POSTGRES_VERSION}-bullseye`
     - Images:
-        - `ghcr.io/vincentsarago/postgis:13-3.4`
-        - `ghcr.io/vincentsarago/postgis:14-3.4`
-        - `ghcr.io/vincentsarago/postgis:15-3.4`
+        - `ghcr.io/vincentsarago/postgis:14-3.5`
+        - `ghcr.io/vincentsarago/postgis:15-3.5`
+        - `ghcr.io/vincentsarago/postgis:16-3.5`
+        - `ghcr.io/vincentsarago/postgis:17-3.5`
+        - `ghcr.io/vincentsarago/postgis:18-3.6`
 
     - old images:
+        - `ghcr.io/vincentsarago/postgis:13-3.4`
         - `ghcr.io/vincentsarago/postgis:13-3.3`
         - `ghcr.io/vincentsarago/postgis:14-3.3`
         - `ghcr.io/vincentsarago/postgis:15-3.3`
@@ -17,6 +20,16 @@ Build and publish images compatible with `linux/amd64` and `linux/arm64` archite
         - `ghcr.io/vincentsarago/postgis:14-3.2`
         - `ghcr.io/vincentsarago/postgis:13-3.1`
         - `ghcr.io/vincentsarago/postgis:14-3.1`
+        - `ghcr.io/vincentsarago/postgis:14-3.4`
+        - `ghcr.io/vincentsarago/postgis:15-3.4`
+
+- **postgis 3.6** (code from https://github.com/postgis/docker-postgis)
+    - Base: `postgres:${POSTGRES_VERSION}-trixie`
+    - Images:
+        - `ghcr.io/vincentsarago/postgis:18-3.6`
+
+
+#### Archived 
 
 - **uvicorn/gunicorn** (code from https://github.com/tiangolo/uvicorn-gunicorn-docker)
     - Base: `bitnami/python:${PYTHON_VERSION}` (~600MB)

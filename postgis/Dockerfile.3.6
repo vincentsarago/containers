@@ -25,10 +25,10 @@
 
 ARG POSTGRES_VERSION
 
-FROM postgres:${POSTGRES_VERSION}-bullseye
+FROM postgres:${POSTGRES_VERSION}-trixie
 
 ENV POSTGIS_MAJOR 3
-ENV POSTGIS_VERSION 3.5.2+dfsg-1.pgdg110+1
+ENV POSTGIS_VERSION 3.6.4+dfsg-2.pgdg13+1
 
 RUN apt-get update \
     && apt-get upgrade -y \
